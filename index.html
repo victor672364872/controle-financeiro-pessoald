@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeto de Vida | Matemática Aplicada</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Chart.js para Gráficos -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <!-- Background de Partículas Cyber -->
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- Header / Navbar -->
+    <header class="header">
+        <div class="logo">
+            <i data-lucide="cpu"></i>
+            <span>PROJETO DE VIDA <small>// MATH.V1</small></span>
+        </div>
+        <nav class="nav-links">
+            <a href="#formula-section">1% Diário</a>
+            <a href="#finance-section">Juros Compostos</a>
+            <a href="#budget-section">Matriz 50/30/20</a>
+            <a href="#matrix-section">Matriz de Decisão</a>
+            <a href="#roadmap-section">Roadmap</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-badge">
+            <i data-lucide="sparkles"></i>
+            <span>Modelagem Matemática de Futuro</span>
+        </div>
+        <h1>ORGANIZANDO OBJETIVOS COM <span>MATEMÁTICA APLICADA</span></h1>
+        <p>Acelere a conquista de metas transformando sonhos em equações, gráficos exponenciais e decisões otimizadas por algoritmos.</p>
+        <a href="#finance-section" class="btn btn-primary">
+            <i data-lucide="calculator"></i> Iniciar Simulador
+        </a>
+    </section>
+
+    <!-- Seção 1: A Matemática do 1% -->
+    <section id="formula-section" class="section">
+        <div class="card glass">
+            <h2><i data-lucide="trending-up"></i> A Equação do Progresso Exponencial</h2>
+            <p>O impacto do hábito contínuo modelado por funções exponenciais:</p>
+            
+            <div class="formula-grid">
+                <div class="formula-box success">
+                    <h3>EVOLUÇÃO DIÁRIA (+1%)</h3>
+                    <div class="math-expr">(1 + 0.01)³⁶⁵ = 37.78</div>
+                    <p>Melhorar 1% a cada dia resulta em um crescimento de <strong>37,7x ao ano</strong>.</p>
+                </div>
+                <div class="formula-box danger">
+                    <h3>REGRESSÃO DIÁRIA (-1%)</h3>
+                    <div class="math-expr">(1 - 0.01)³⁶⁵ = 0.03</div>
+                    <p>Regredir 1% a cada dia reduz seu potencial a quase <strong>zero (3%)</strong>.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção 2: Calculadora de Juros Compostos -->
+    <section id="finance-section" class="section">
+        <div class="card glass">
+            <h2><i data-lucide="line-chart"></i> Projeção de Objetivos (Juros Compostos)</h2>
+            <p>A fórmula do montante exponencial: <code>M = P(1 + i)ⁿ + PMT [((1 + i)ⁿ - 1) / i]</code></p>
+            
+            <div class="grid-2">
+                <div class="form-container">
+                    <div class="form-group">
+                        <label for="initial">Aporte Inicial (R$)</label>
+                        <input type="number" id="initial" value="1000">
+                    </div>
+                    <div class="form-group">
+                        <label for="monthly">Aporte Mensal (R$)</label>
+                        <input type="number" id="monthly" value="300">
+                    </div>
+                    <div class="form-group">
+                        <label for="rate">Taxa de Juros Anual (%)</label>
+                        <input type="number" id="rate" value="10" step="0.1">
+                    </div>
+                    <div class="form-group">
+                        <label for="years">Tempo de Projeção (Anos)</label>
+                        <input type="number" id="years" value="10">
+                    </div>
+                    <button id="calc-finance-btn" class="btn btn-primary" onclick="calculateFinance()">
+                        <i data-lucide="cpu"></i> SIMULAR FUTURO
+                    </button>
+                </div>
+
+                <div class="chart-container">
+                    <div class="stats-overview">
+                        <div>
+                            <span>Total Investido</span>
+                            <strong id="total-invested">R$ 0,00</strong>
+                        </div>
+                        <div>
+                            <span>Juros Gerados</span>
+                            <strong id="total-interest" class="highlight">R$ 0,00</strong>
+                        </div>
+                    </div>
+                    <div class="canvas-holder">
+                        <canvas id="financeChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção 3: Alocação de Recursos (50/30/20) -->
+    <section id="budget-section" class="section">
+        <div class="card glass">
+            <h2><i data-lucide="pie-chart"></i> Otimização de Recursos (Matriz 50/30/20)</h2>
+            <p>Distribuição otimizada de Renda ou Tempo para atingir o equilíbrio de vida.</p>
+
+            <div class="grid-2">
+                <div class="form-container">
+                    <div class="form-group">
+                        <label for="total-income">Renda Mensal ou Carga Horária (R$ / Horas)</label>
+                        <input type="number" id="total-income" value="5000">
+                    </div>
+                    <button class="btn btn-secondary" onclick="calculateBudget()">
+                        <i data-lucide="pie-chart"></i> Calcular Distribuição
+                    </button>
+
+                    <div class="breakdown">
+                        <div class="breakdown-item border-cyan">
+                            <span>50% Necessidades / Base</span>
+                            <strong id="val-50">R$ 2.500,00</strong>
+                        </div>
+                        <div class="breakdown-item border-purple">
+                            <span>30% Desejos / Estilo de Vida</span>
+                            <strong id="val-30">R$ 1.500,00</strong>
+                        </div>
+                        <div class="breakdown-item border-green">
+                            <span>20% Objetivos / Futuro</span>
+                            <strong id="val-20">R$ 1.000,00</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chart-container">
+                    <div class="canvas-holder">
+                        <canvas id="budgetChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção 4: Matriz de Decisão -->
+    <section id="matrix-section" class="section">
+        <div class="card glass">
+            <h2><i data-lucide="target"></i> Algoritmo de Priorização de Objetivos</h2>
+            <p>Calcule o Score de Eficiência: <code>Score = (Impacto × Probabilidade) / Custo</code></p>
+
+            <form id="matrix-form" onsubmit="addObjective(event)" class="grid-form">
+                <div class="form-group">
+                    <label>Nome do Objetivo</label>
+                    <input type="text" id="obj-name" placeholder="Ex: Intercâmbio, Aprender Python" required>
+                </div>
+                <div class="form-group">
+                    <label>Impacto no Futuro (1-10)</label>
+                    <input type="number" id="obj-impact" min="1" max="10" value="8" required>
+                </div>
+                <div class="form-group">
+                    <label>Probabilidade (1-10)</label>
+                    <input type="number" id="obj-prob" min="1" max="10" value="7" required>
+                </div>
+                <div class="form-group">
+                    <label>Custo / Esforço (1-10)</label>
+                    <input type="number" id="obj-cost" min="1" max="10" value="4" required>
+                </div>
+                <button type="submit" class="btn btn-primary full-width">
+                    <i data-lucide="plus"></i> Adicionar à Matriz
+                </button>
+            </form>
+
+            <div class="table-responsive">
+                <table class="tech-table">
+                    <thead>
+                        <tr>
+                            <th>Objetivo</th>
+                            <th>Impacto</th>
+                            <th>Probabilidade</th>
+                            <th>Esforço</th>
+                            <th>Score Ponderado</th>
+                            <th>Ação</th>
+                        </tr>
+                    </thead>
+                    <tbody id="matrix-tbody">
+                        <!-- Inserido dinamicamente -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção 5: Roadmap -->
+    <section id="roadmap-section" class="section">
+        <div class="card glass">
+            <h2><i data-lucide="map-pin"></i> Cronograma de Execução Temporal</h2>
+            <div class="roadmap-grid">
+                <div class="roadmap-col">
+                    <div class="roadmap-header cyan">
+                        <i data-lucide="zap"></i> Curto Prazo (1-6 meses)
+                    </div>
+                    <ul class="task-list" id="tasks-short">
+                        <li><input type="checkbox"> Criar reserva de emergência</li>
+                        <li><input type="checkbox"> Ler 3 livros de matemática aplicada</li>
+                    </ul>
+                </div>
+
+                <div class="roadmap-col">
+                    <div class="roadmap-header purple">
+                        <i data-lucide="clock"></i> Médio Prazo (1-3 anos)
+                    </div>
+                    <ul class="task-list" id="tasks-medium">
+                        <li><input type="checkbox"> Certificação profissional</li>
+                        <li><input type="checkbox"> Atingir R$ 20.000 investidos</li>
+                    </ul>
+                </div>
+
+                <div class="roadmap-col">
+                    <div class="roadmap-header green">
+                        <i data-lucide="flag"></i> Longo Prazo (5+ anos)
+                    </div>
+                    <ul class="task-list" id="tasks-long">
+                        <li><input type="checkbox"> Independência financeira</li>
+                        <li><input type="checkbox"> Aquisição da casa própria</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
